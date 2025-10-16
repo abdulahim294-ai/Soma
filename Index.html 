@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Somali Trade Connect — ربط الصومال بالعالم</title>
+  <meta name="description" content="موقع احترافي لعرض خدمات تصميم وتطوير المواقع وربط السوق الصومالي بالعالم. سريع، نظيف، ومتجاوب." />
+  <meta name="author" content="محمد" />
+  <!-- favicon (ضع ملف favicon.ico في مجلد images أو عدّل المسار) -->
+  <link rel="icon" href="images/favicon.ico" />
+  <!-- ====== CSS داخلي جميل ومُنظّم (يمكنك فصل الملف لاحقًا) ====== -->
+  <style>
+    /* ---------- متغيرات ألوان وخطوط ---------- */
+    :root{
+      --bg:#0f1724;
+      --card:#0b1320;
+      --muted:#9ca3af;
+      --accent:#06b6d4; /* أزرق سماوي */
+      --accent-2:#06b6d4;
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      --maxw:1140px;
+      --txt:#e6eef6;
+    }
+    /* استخدم خط system لتقليل طلبات */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Tahoma, Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(180deg,var(--bg) 0%, #07101a 100%);
+      color:var(--txt);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
+      padding-bottom:60px;
+    }
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:20px}
+    header.site-header{
+      position:sticky;top:12px;z-index:40;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:10px 14px;
+      box-shadow: 0 6px 24px rgba(2,6,23,0.6);
+      margin-bottom:16px;
+      backdrop-filter: blur(6px);
+      display:flex;align-items:center;justify-content:space-between;gap:10px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{
+      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7dd3fc);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#042226;
+      box-shadow: 0 6px 18px rgba(6,182,212,0.12);
+    }
+    .brand h1{font-size:16px;margin:0}
+    nav.main-nav{display:flex;gap:14px;align-items:center}
+    nav.main-nav a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px;border-radius:8px}
+    nav.main-nav a:hover{color:var(--txt);background:var(--glass)}
+    /* زر بارع */
+    .btn{background:var(--accent);color:#042226;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:700}
+    /* هيرو */
+    .hero{
+      display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin:12px 0;
+    }
+    .hero .card{background:transparent;padding:18px;border-radius:12px}
+    .kicker{display:inline-block;background:rgba(6,182,212,0.08);color:var(--accent);padding:6px 10px;border-radius:999px;font-weight:700;margin-bottom:12px}
+    .hero h2{font-size:28px;margin:6px 0 8px}
+    .hero p.lead{color:var(--muted);margin:0 0 14px}
+    .hero .actions{display:flex;gap:10px;flex-wrap:wrap}
+    /* بطاقة جانبية */
+    .card-side{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:14px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .stat{display:flex;justify-content:space-between;gap:10px}
+    .stat div{flex:1}
+    .stat strong{display:block;font-size:18px;color:var(--txt)}
+    .stat span{color:var(--muted);font-size:13px}
+    /* خدمات */
+    .section{margin:20px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .service{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .service h3{margin:0 0 8px}
+    .service p{margin:0;color:var(--muted);font-size:14px}
+    /* معرض الأعمال */
+    .filters{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
+    .chip{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);cursor:pointer;color:var(--muted);border:1px solid rgba(255,255,255,0.02)}
+    .chip.active{background:var(--accent);color:#042226;border:0}
+    .portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .work{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;overflow:hidden;box-shadow:0 10px 30px rgba(2,6,23,0.5)}
+    .work img{width:100%;height:180px;object-fit:cover;display:block}
+    .work .meta{padding:12px}
+    /* مقالات */
+    .post{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:14px;border-radius:10px}
+    /* تواصل */
+    form.contact{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    form .full{grid-column:1/3}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:var(--txt);outline:none}
+    input::placeholder,textarea::placeholder{color:var(--muted)}
+    .note{color:var(--muted);font-size:13px;margin-top:8px}
+    /* الفوتر */
+    footer.site-footer{margin-top:24px;padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));text-align:center;color:var(--muted)}
+    /* استجابة */
+    @media(max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .portfolio{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:600px){
+      nav.main-nav{display:none}
+      header.site-header{padding:10px}
+      .grid{grid-template-columns:1fr}
+      .portfolio{grid-template-columns:1fr}
+      form.contact{grid-template-columns:1fr}
+    }
+    /* لمسات حركية */
+    .fade{opacity:0;transform:translateY(10px);transition:all .6s cubic-bezier(.2,.9,.35,1)}
+    .fade.show{opacity:1;transform:none}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="site-header" role="banner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">SC</div>
+        <div>
+          <h1>Somali Trade Connect</h1>
+          <div class="small">ربط السوق الصومالي بالعالم</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="روابط الموقع">
+        <a href="#about">عن الموقع</a>
+        <a href="#services">خدمات</a>
+        <a href="#portfolio">أعمال</a>
+        <a href="#blog">مقالات</a>
+        <a href="#contact" class="btn">تواصل الآن</a>
+      </nav>
+
+      <!-- زر موبايل -->
+      <button id="mobileBtn" aria-label="قائمة" class="btn" style="display:none">القائمة</button>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" role="region" aria-labelledby="heroTitle">
+      <div class="card fade show">
+        <span class="kicker">خدمة فورية</span>
+        <h2 id="heroTitle">ابنِ حضورك الرقمي — وصل عملك للعالم</h2>
+        <p class="lead">نصمم مواقع متوسطة احترافية باللغة العربية والإنجليزية، متجاوبة وسريعة التحميل. صفحة تعريف، متجر بسيط، أو بوابة خدمات — كل شيء جاهز للانطلاق.</p>
+        <div class="actions">
+          <a class="btn" href="#contact">اطلب موقعك</a>
+          <a class="small" href="#portfolio" style="align-self:center;color:var(--muted)">شاهد الأعمال</a>
+        </div>
+        <div class="note">سهل، سريع ومضمون — دفع بعد الرضا التجريبي للعميل.</div>
+      </div>
+
+      <aside class="card-side fade show">
+        <div class="stat">
+          <div>
+            <strong id="statProjects">0</strong>
+            <span>مشاريع مُنجَزة</span>
+          </div>
+          <div>
+            <strong id="statClients">0</strong>
+            <span>عملاء سعداء</span>
+          </div>
+        </div>
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0">
+        <p class="small">نقدّم دعم فني لمدة 14 يوم بعد التسليم، واستضافة مبدئية إذا رغبت.</p>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section">
+      <div class="card fade">
+        <h2>عن Somali Trade Connect</h2>
+        <p class="small">مهمتنا: تسهيل وصول المنتجات والخدمات الصومالية إلى المشترين حول العالم عبر مواقع احترافية وسهلة الإدارة. نقدم تصميم سريع، SEO أساسي، وتكامل مع وسائل التواصل والدفع (عند الطلب).</p>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section">
+      <h2>خدماتنا</h2>
+      <div class="grid">
+        <div class="service fade">
+          <h3>موقع تعريفي/One-Page</h3>
+          <p>صفحة واحدة أنيقة لعرض مشروعك أو شركتك مع نموذج تواصل وربط واتساب.</p>
+        </div>
+        <div class="service fade">
+          <h3>موقع متعدد الصفحات</h3>
+          <p>موقع 5 صفحات (الرئيسية، عن، خدمات، معرض، تواصل) مع لوحة تحكم بسيطة.</p>
+        </div>
+        <div class="service fade">
+          <h3>متجر إلكتروني بسيط</h3>
+          <p>متجر جاهز لبيع المنتجات المحلية، مع أو بدون بوابة دفع (حسب الطلب).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section">
+      <h2>أعمال سابقة</h2>
+      <div class="filters">
+        <div class="chip active" data-filter="all">الكل</div>
+        <div class="chip" data-filter="site">مواقع</div>
+        <div class="chip" data-filter="shop">متاجر</div>
+        <div class="chip" data-filter="branding">علامات</div>
+      </div>
+
+      <div class="portfolio" aria-live="polite">
+        <!-- عيّن data-type لكل عمل حتى يعمل الفلتر -->
+        <div class="work" data-type="site">
+          <img src="images/sample1.jpg" alt="عمل 1">
+          <div class="meta">
+            <strong>موقع معرض أعمال</strong>
+            <div class="small">One-Page — جاهز للعرض</div>
+          </div>
+        </div>
+
+        <div class="work" data-type="shop">
+          <img src="images/sample2.jpg" alt="عمل 2">
+          <div class="meta">
+            <strong>متجر منتجات</strong>
+            <div class="small">يدعم الدفع والاتصال</div>
+          </div>
+        </div>
+
+        <div class="work" data-type="branding">
+          <img src="images/sample3.jpg" alt="عمل 3">
+          <div class="meta">
+            <strong>هوية مرئية</strong>
+            <div class="small">شعار وبوستر</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog" class="section">
+      <h2>مقالات ونصائح</h2>
+      <div class="grid">
+        <article class="post fade">
+          <h3>كيف تبدأ مشروع إلكتروني في الصومال</h3>
+          <p class="small">خطوات بسيطة: تحليل السوق → صفحة تعريف → تواصل مباشر مع العملاء → إطلاق.</p>
+        </article>
+        <article class="post fade">
+          <h3>نصائح تسويق سريعة</h3>
+          <p class="small">استخدم فيسبوك محليًا، واتساب للأعمال، وتحديث مستمر للمحتوى.</p>
+        </article>
+        <article class="post fade">
+          <h3>حماية موقعك</h3>
+          <p class="small">احتفظ بنسخة احتياطية، استخدم HTTPS، واحذر الروابط المشبوهة.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section">
+      <h2>تواصل معنا</h2>
+      <div class="card fade">
+        <form id="contactForm" class="contact" novalidate>
+          <input type="text" id="name" placeholder="الاسم الكامل" required />
+          <input type="email" id="email" placeholder="البريد الإلكتروني" required />
+          <input type="text" id="phone" placeholder="رقم الهاتف أو واتساب" required />
+          <select id="service" required>
+            <option value="">اختر الخدمة</option>
+            <option>موقع تعريفي</option>
+            <option>موقع متعدد الصفحات</option>
+            <option>متجر إلكتروني</option>
+          </select>
+          <textarea id="message" rows="4" placeholder="وصف سريع للمشروع" class="full" required></textarea>
+          <div class="full">
+            <button type="submit" class="btn">أرسل الطلب</button>
+            <div id="formMsg" class="note" style="display:none;margin-top:8px"></div>
+          </div>
+        </form>
+        <div class="note">سنرد خلال 24 ساعة. يمكنك أيضاً إرسال رسالة على واتساب: +2526XXXXXXX</div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>© <strong>Somali Trade Connect</strong> — ربط الصومال بالعالم · صمم بواسطة محمد</p>
+        <p class="small">عنوان بريد: info@yourdomain.com · الهاتف: +2526XXXXXXX</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ====== JavaScript: سلوك التفاعل والفلتر + تحقق النموذج ====== -->
+  <script>
+    (function(){
+      // إظهار/إخفاء nav على الشاشات الصغيرة (لو احتجت)
+      const mobileBtn = document.getElementById('mobileBtn');
+      const nav = document.querySelector('.main-nav');
+      function checkMobile(){
+        if(window.innerWidth <= 600){ mobileBtn.style.display='inline-block'; nav.style.display='none'; }
+        else { mobileBtn.style.display='none'; nav.style.display='flex'; }
+      }
+      mobileBtn && mobileBtn.addEventListener('click', ()=> {
+        nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+      });
+      window.addEventListener('resize', checkMobile);
+      checkMobile();
+
+      // أرقام إحصائية مزيفة تتزايد (لمسة حركية)
+      const statProjects = document.getElementById('statProjects');
+      const statClients = document.getElementById('statClients');
+      let p=27, c=18; // عدّل القيم كما تحب
+      function animateStats(){
+        let i=0; const t=setInterval(()=>{ i++; statProjects.textContent = Math.min(p,i); if(i>=p)clearInterval(t)},30);
+        let j=0; const s=setInterval(()=>{ j++; statClients.textContent = Math.min(c,j); if(j>=c)clearInterval(s)},40);
+      }
+      animateStats();
+
+      // ظهور تدريجي للعناصر ذات الفئة fade
+      function reveal(){
+        document.querySelectorAll('.fade').forEach((el, idx)=>{
+          setTimeout(()=> el.classList.add('show'), 120*idx);
+        });
+      }
+      reveal();
+
+      // الفلتر في المعرض
+      const chips = document.querySelectorAll('.chip');
+      const works = document.querySelectorAll('.work');
+      chips.forEach(chip=>{
+        chip.addEventListener('click', ()=>{
+          chips.forEach(c=>c.classList.remove('active'));
+          chip.classList.add('active');
+          const f = chip.dataset.filter;
+          works.forEach(w=>{
+            if(f==='all') w.style.display='block';
+            else w.style.display = (w.dataset.type === f) ? 'block' : 'none';
+          });
+        });
+      });
+
+      // نموذج التواصل: تحقق بسيط ثم عرض رسالة (يمكن استبدال بإرسال حقيقي عبر back-end أو خدمة مثل Formspree)
+      const form = document.getElementById('contactForm');
+      const formMsg = document.getElementById('formMsg');
+      form && form.addEventListener('submit', function(e){
+        e.preventDefault();
+        // تحقق حقول
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value;
+        const message = document.getElementById('message').value.trim();
+        if(!name||!email||!phone||!service||!message){
+          formMsg.style.display='block'; formMsg.style.color='#fca5a5'; formMsg.textContent = 'أكمل جميع الحقول من فضلك.';
+          return;
+        }
+        // هنا يمكن إرسال بيانات إلى API أو خدمة بريدية. الآن سنعرض رسالة نجاح تجريبية:
+        formMsg.style.display='block'; formMsg.style.color='#86efac'; formMsg.textContent = 'تم إرسال الطلب! سنرد عليك خلال 24 ساعة.';
+        form.reset();
+      });
+
+      // تحسين الروابط الداخلية: سكرول ناعم
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
